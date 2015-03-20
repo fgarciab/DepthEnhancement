@@ -50,7 +50,7 @@ private slots:
     void on_ui_pb_ApplyFilter_clicked();
     void on_ui_cb_dataFusion_Display_currentIndexChanged(int index);
     void on_ui_pb_SaveDisplayedImage_clicked();
-    void on_ui_ActionAbout_clicked();
+    void on_actionAbout_triggered();
 
 private:
     Ui::MainWindow *ui;

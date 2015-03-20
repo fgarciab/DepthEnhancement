@@ -16,8 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));
     connect(ui->actionLoad_Guid_Image_I, SIGNAL(triggered()), this, SLOT(on_ui_pb_LoadGuidImage_clicked()));
     connect(ui->actionLoad_Depth_Map_D, SIGNAL(triggered()), this, SLOT(on_ui_pb_LoadDepthMap_clicked()));
-    connect(ui->actionSave_Displayed_Image, SIGNAL(triggered()), this, SLOT(on_ui_pb_SaveDisplayedImage_clicked()));
-    connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(on_ui_ActionAbout_clicked()));
+    connect(ui->actionSave_Displayed_Image, SIGNAL(triggered()), this, SLOT(on_ui_pb_SaveDisplayedImage_clicked()));    
 
     m_sMaxPaletteValue = ui->ui_sl_maxPalette->value()*10;
     m_sMinPaletteValue = ui->ui_sl_minPalette->value()*10;
@@ -573,7 +572,7 @@ void MainWindow::on_ui_pb_SaveDisplayedImage_clicked()
     }
 }
 
-void MainWindow::on_ui_ActionAbout_clicked()
+void MainWindow::on_actionAbout_triggered()
 {
     QMessageBox::information(0, QString("About"), QString(
                                 QString("This tool implements the RGB-D, UML and PWAS filters presented at:\n\n")+
