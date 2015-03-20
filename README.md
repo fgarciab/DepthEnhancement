@@ -16,3 +16,9 @@ Garcia, F. and Mirbach, B. and Ottersten, B. and Grandidier, F. and Cuesta, A.
 IEEE International Conference on Image Processing (ICIP), pp.2805-2808, 2010
 
 Feel free to download my papers from http://www.frederic-garcia-becerro.com and do not hesitate to contact me in case of doubts: frederic.garcia.becerro@gmail.com
+
+Release notes:
+
+2015/03/20
+Remember to change the OpenCV and QT paths from the DepthEnhancement.pro file.
+Note that the expected resolution of input images (depth map and guidance image) is (640x480) pixels.
