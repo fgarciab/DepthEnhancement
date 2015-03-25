@@ -52,6 +52,8 @@ private slots:
     void on_ui_pb_SaveDisplayedImage_clicked();
     void on_actionAbout_triggered();
 
+    void on_ui_cb_dataFusion_Downsampling_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
 
@@ -66,6 +68,7 @@ private:
     short   m_sYRes; // Y Resolution
     short   m_sMaxPaletteValue; // Max palette value
     short   m_sMinPaletteValue; // Min palette value
+    short   m_sScaleFactor; // Scale Factor
 };
 
 #endif // MAINWINDOW_H

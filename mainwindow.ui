@@ -32,7 +32,7 @@
       <x>30</x>
       <y>160</y>
       <width>211</width>
-      <height>261</height>
+      <height>351</height>
      </rect>
     </property>
     <property name="title">
@@ -42,7 +42,7 @@
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>50</y>
+       <y>40</y>
        <width>171</width>
        <height>19</height>
       </rect>
@@ -61,7 +61,7 @@
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>30</y>
+       <y>20</y>
        <width>171</width>
        <height>16</height>
       </rect>
@@ -81,7 +81,7 @@
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>80</y>
+       <y>70</y>
        <width>171</width>
        <height>16</height>
       </rect>
@@ -101,7 +101,7 @@
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>100</y>
+       <y>90</y>
        <width>171</width>
        <height>19</height>
       </rect>
@@ -120,7 +120,7 @@
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>130</y>
+       <y>120</y>
        <width>191</width>
        <height>16</height>
       </rect>
@@ -143,7 +143,7 @@
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>150</y>
+       <y>140</y>
        <width>171</width>
        <height>19</height>
       </rect>
@@ -167,11 +167,11 @@
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="Line" name="line_2">
+    <widget class="Line" name="line_1">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>170</y>
+       <y>230</y>
        <width>171</width>
        <height>16</height>
       </rect>
@@ -184,7 +184,7 @@
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>190</y>
+       <y>270</y>
        <width>171</width>
        <height>22</height>
       </rect>
@@ -262,7 +262,7 @@
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>220</y>
+       <y>310</y>
        <width>171</width>
        <height>31</height>
       </rect>
@@ -274,6 +274,104 @@
      </property>
      <property name="text">
       <string>Apply Filter</string>
+     </property>
+    </widget>
+    <widget class="Line" name="line_0">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>160</y>
+       <width>171</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="ui_cb_dataFusion_Downsampling">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>200</y>
+       <width>171</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="currentIndex">
+      <number>3</number>
+     </property>
+     <item>
+      <property name="text">
+       <string>1x</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2x</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>4x</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>8x</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>16x</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="ui_lbl_downsampling_factor">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>180</y>
+       <width>171</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Downsampling Scale Factor:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="ui_lbl_filter">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>250</y>
+       <width>171</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Depth Enhancement Filter:</string>
      </property>
     </widget>
    </widget>

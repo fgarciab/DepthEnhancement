@@ -22,9 +22,10 @@ MainWindow::MainWindow(QWidget *parent) :
     m_sMinPaletteValue = ui->ui_sl_minPalette->value()*10;
     m_sXRes = 640; // Default res
     m_sYRes = 480;
+    m_sScaleFactor = ui->ui_cb_dataFusion_Downsampling->currentIndex();
 
     // Instance to the Data Fusion class, downsampling factor
-    m_DataFusion = new c_DataFusion(D_Fusion_2D_3D_2DW, D_Fusion_2D_3D_2DH, 3); // D_Fusion_2D_3D_2DW = 640; D_Fusion_2D_3D_2DH = 480;
+    m_DataFusion = new c_DataFusion(D_Fusion_2D_3D_2DW, D_Fusion_2D_3D_2DH, m_sScaleFactor); // D_Fusion_2D_3D_2DW = 640; D_Fusion_2D_3D_2DH = 480;
     // Initialize depth map
     m_cvDepthImage = new cv::Mat(m_sYRes, m_sXRes, CV_16UC1, cv::Scalar(0));
     m_cvRGBImage = new cv::Mat(m_sYRes, m_sXRes, CV_8UC1, cv::Scalar(0));
@@ -335,10 +336,10 @@ void MainWindow::on_ui_cb_dataFusion_Display_currentIndexChanged(int index)
         cv::cvtColor(l_cvImage, l_cvImage, CV_GRAY2RGB);
         break;
     case 2: // Downsampled Guidance Image I_ds
-        l_cvImage.create(cv::Size(m_sXRes>>3, m_sYRes>>3), CV_8UC1);
+        l_cvImage.create(cv::Size(m_sXRes>>m_sScaleFactor, m_sYRes>>m_sScaleFactor), CV_8UC1);
         l_ucData = m_DataFusion->GetGuidanceImage_ds();
         l_ucData_cv = (unsigned char*)l_cvImage.data;
-        l_lSize = (m_sXRes>>3)*(m_sYRes>>3);
+        l_lSize = (m_sXRes>>m_sScaleFactor)*(m_sYRes>>m_sScaleFactor);
         while (l_lSize--)
             *l_ucData_cv++ = *l_ucData++;
         cv::cvtColor(l_cvImage, l_cvImage, CV_GRAY2RGB);
@@ -363,10 +364,10 @@ void MainWindow::on_ui_cb_dataFusion_Display_currentIndexChanged(int index)
         cv::applyColorMap(l_cvImage, l_cvImage, cv::COLORMAP_JET);
         break;
     case 4: // Downsampled Depth Map D_ds
-        l_cvImage.create(cv::Size(m_sXRes>>3, m_sYRes>>3), CV_16UC1);
+        l_cvImage.create(cv::Size(m_sXRes>>m_sScaleFactor, m_sYRes>>m_sScaleFactor), CV_16UC1);
         l_usData = m_DataFusion->GetDepthMap_ds();
         l_usData_cv = (unsigned short*)l_cvImage.data;
-        l_lSize = (m_sXRes>>3)*(m_sYRes>>3);
+        l_lSize = (m_sXRes>>m_sScaleFactor)*(m_sYRes>>m_sScaleFactor);
         while (l_lSize--)
         {
             if (*l_usData == MLF_APP_MAX_DISTANCE)
@@ -392,10 +393,10 @@ void MainWindow::on_ui_cb_dataFusion_Display_currentIndexChanged(int index)
         cv::applyColorMap(l_cvImage, l_cvImage, cv::COLORMAP_JET);
         break;
     case 6: // Credibility Map Q_ds
-        l_cvImage.create(cv::Size(m_sXRes>>3, m_sYRes>>3), CV_8UC1);
+        l_cvImage.create(cv::Size(m_sXRes>>m_sScaleFactor, m_sYRes>>m_sScaleFactor), CV_8UC1);
         l_ucData = m_DataFusion->GetCredibilityMap_ds();
         l_ucData_cv = (unsigned char*)l_cvImage.data;
-        l_lSize = (m_sXRes>>3)*(m_sYRes>>3);
+        l_lSize = (m_sXRes>>m_sScaleFactor)*(m_sYRes>>m_sScaleFactor);
         while (l_lSize--)
             *l_ucData_cv++ = 255-*l_ucData++; // Invert the image for display reasons
         cv::cvtColor(l_cvImage, l_cvImage, CV_GRAY2RGB);
@@ -493,10 +494,10 @@ void MainWindow::on_ui_pb_SaveDisplayedImage_clicked()
                 *l_ucData_cv++ = *l_ucData++;
             break;
         case 2: // Downsampled Guidance Image I_ds
-            l_cvImage.create(cv::Size(m_sXRes>>3, m_sYRes>>3), CV_8UC1);
+            l_cvImage.create(cv::Size(m_sXRes>>m_sScaleFactor, m_sYRes>>m_sScaleFactor), CV_8UC1);
             l_ucData = m_DataFusion->GetGuidanceImage_ds();
             l_ucData_cv = (unsigned char*)l_cvImage.data;
-            l_lSize = (m_sXRes>>3)*(m_sYRes>>3);
+            l_lSize = (m_sXRes>>m_sScaleFactor)*(m_sYRes>>m_sScaleFactor);
             while (l_lSize--)
                 *l_ucData_cv++ = *l_ucData++;
             break;
@@ -515,10 +516,10 @@ void MainWindow::on_ui_pb_SaveDisplayedImage_clicked()
             }
             break;
         case 4: // Downsampled Depth Map D_ds
-            l_cvImage.create(cv::Size(m_sXRes>>3, m_sYRes>>3), CV_16UC1);
+            l_cvImage.create(cv::Size(m_sXRes>>m_sScaleFactor, m_sYRes>>m_sScaleFactor), CV_16UC1);
             l_usData = m_DataFusion->GetDepthMap_ds();
             l_usData_cv = (unsigned short*)l_cvImage.data;
-            l_lSize = (m_sXRes>>3)*(m_sYRes>>3);
+            l_lSize = (m_sXRes>>m_sScaleFactor)*(m_sYRes>>m_sScaleFactor);
             while (l_lSize--)
             {
                 if (*l_usData == MLF_APP_MAX_DISTANCE)
@@ -537,10 +538,10 @@ void MainWindow::on_ui_pb_SaveDisplayedImage_clicked()
                 *l_ucData_cv++ = 255-*l_ucData++; // Invert the image for display reasons
             break;
         case 6: // Credibility Map Q_ds
-            l_cvImage.create(cv::Size(m_sXRes>>3, m_sYRes>>3), CV_8UC1);
+            l_cvImage.create(cv::Size(m_sXRes>>m_sScaleFactor, m_sYRes>>m_sScaleFactor), CV_8UC1);
             l_ucData = m_DataFusion->GetCredibilityMap_ds();
             l_ucData_cv = (unsigned char*)l_cvImage.data;
-            l_lSize = (m_sXRes>>3)*(m_sYRes>>3);
+            l_lSize = (m_sXRes>>m_sScaleFactor)*(m_sYRes>>m_sScaleFactor);
             while (l_lSize--)
                 *l_ucData_cv++ = 255-*l_ucData++; // Invert the image for display reasons
             break;
@@ -586,4 +587,12 @@ void MainWindow::on_actionAbout_triggered()
                                 QString("Garcia, F. and Mirbach, B. and Ottersten, B. and Grandidier, F. and Cuesta, A.\n")+
                                 QString("IEEE International Conference on Image Processing (ICIP), pp.2805-2808, 2010\n\n")+
                                 QString("Download the papers at http://www.frederic-garcia-becerro.com")));
+}
+
+void MainWindow::on_ui_cb_dataFusion_Downsampling_currentIndexChanged(int index)
+{
+    m_sScaleFactor = index;
+    delete m_DataFusion;
+    m_DataFusion = NULL;
+    m_DataFusion = new c_DataFusion(D_Fusion_2D_3D_2DW, D_Fusion_2D_3D_2DH, m_sScaleFactor);
 }

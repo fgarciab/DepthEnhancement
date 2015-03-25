@@ -38,7 +38,7 @@
 #define D_Fusion_2D_3D_2DSIZE		(D_Fusion_2D_3D_2DW*D_Fusion_2D_3D_2DH)
 #define D_Fusion_2D_3D_2DSIZE_RGB	(D_Fusion_2D_3D_2DW*D_Fusion_2D_3D_2DH*3)
 
-#define D_Fusion_2D_3D_Spatial_downsample_rate	3 // Default downsampling rate, can be [0,4]
+#define D_Fusion_2D_3D_Spatial_downsample_rate	0 // Default downsampling rate, can be [0,4] but I set it to 0 in order to book enough memory
 #define D_Fusion_2D_3D_2DW_DS		(D_Fusion_2D_3D_2DW >> D_Fusion_2D_3D_Spatial_downsample_rate)
 #define D_Fusion_2D_3D_2DH_DS		(D_Fusion_2D_3D_2DH >> D_Fusion_2D_3D_Spatial_downsample_rate)
 #define D_Fusion_2D_3D_2DSIZE_DS	(D_Fusion_2D_3D_2DW_DS*D_Fusion_2D_3D_2DH_DS)
